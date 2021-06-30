@@ -1,4 +1,6 @@
 import { NavbarComponent } from "../Navbar"
+
+
 export const CartWidget = () => {
 
   const carrito = [];
