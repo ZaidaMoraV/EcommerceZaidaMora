@@ -1,17 +1,25 @@
 import { useState } from "react";
 import { Button } from "react-bootstrap";
-import { ItemCount } from "../../Components/ButtonComponent/ItemCount";
+import { Item } from "./Item";
 
-export const HomeContainer = () => {
+
+export const ItemCount = () => {
     const [contador, setContador] = useState(0);
+
+    // ValidarContador
+    function validarContador() {
+        if ( contador <5 ){
+            setContador(contador+1);
+        }
+    }
+
 
     return (
         <>
             <section>
-                <ItemCount name={'El Pollito Pepe'} />
-                <Button variant="primary" size="lg"  onClick={() => { setContador(contador+1)}}>Agregar</Button>
+                <Item/>
+                <Button id="agregar" variant="primary" size="lg"  onClick={() => { validarContador()}}>Agregar</Button>
                 {contador}
-                <h2> </h2>
                 <Button variant="secondary" size="lg" block onClick={() => { setContador(contador-1)}}>Eliminar</Button>
             </section>
         </>
