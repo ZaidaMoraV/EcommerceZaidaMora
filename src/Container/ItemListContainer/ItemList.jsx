@@ -6,10 +6,11 @@ export const ItemList = () => {
 
     useEffect(() => {
         async function getDataFromBooks() {
-            const result = await fetch("https://api.mercadolibre.com/sites/MLA/search?q=libros");
-            console.log("aqui")
+            const result = await fetch("https://api.mercadolibre.com/sites/MLC/search?q=libros");
+            console.log (result);
             const data = await result.json();
             setListProducts(data.results);
+            console.log ("aqui");
         }
         getDataFromBooks();
     }, [])

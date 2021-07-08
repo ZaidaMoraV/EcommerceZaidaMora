@@ -1,11 +1,12 @@
 import { CartWidget } from "./CartWidget";
 
 export const NavbarComponent = () => {
+  console.log('Into Navbar');
 
   return (
-    <div>
-      <body>
-        <litle> El Rincón de la lectura </litle>
+    
+      <div>
+        <title> El Rincón de la lectura </title>
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
           <img alt="" src="/images/libros.jpg" width="100" height="100" />
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,7 +25,7 @@ export const NavbarComponent = () => {
               </li>
               <li className="nav-item dropdown">
                 <p className="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                 Listado
+                  Listado
                 </p>
                 <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                   <p className="dropdown-item">Historia</p>
@@ -33,10 +34,10 @@ export const NavbarComponent = () => {
                 </div>
               </li>
               <CartWidget />
-           </ul>
+            </ul>
           </div>
         </nav>
-      </body>
-    </div>
+      </div>
+   
   )
 }

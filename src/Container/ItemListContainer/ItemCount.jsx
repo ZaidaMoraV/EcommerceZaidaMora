@@ -4,23 +4,30 @@ import { Item } from "./Item";
 
 
 export const ItemCount = () => {
+    console.log('---> Into ItemCount');
     const [contador, setContador] = useState(0);
 
     // ValidarContador
-    function validarContador() {
-        if ( contador <5 ){
-            setContador(contador+1);
+    function validarSuma() {
+        if (contador < 5) {
+            setContador(contador + 1);
+        }
+    }
+    function validarResta() {
+        if (contador >= 1) {
+            setContador(contador - 1);
         }
     }
 
-
+    
     return (
+
         <>
             <section>
-                <Item/>
-                <Button id="agregar" variant="primary" size="lg"  onClick={() => { validarContador()}}>Agregar</Button>
+                <Item />
+                <Button variant="primary" size="lg" onClick={() => { validarSuma() }}>Agregar</Button>
                 {contador}
-                <Button variant="secondary" size="lg" block onClick={() => { setContador(contador-1)}}>Eliminar</Button>
+                <Button variant="secondary" size="lg" onClick={() => { validarResta() }}>Eliminar</Button>
             </section>
         </>
     )
