@@ -14,11 +14,10 @@ export const ItemCount = () => {
         }
     }
     function validarResta() {
-        if (contador >= 1) {
+        if (contador > 1) {
             setContador(contador - 1);
         }
     }
-
     
     return (
 

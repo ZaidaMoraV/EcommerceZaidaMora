@@ -1,43 +1,50 @@
 import { CartWidget } from "./CartWidget";
+import { Link } from "react-router-dom";
+import Nav from 'react-bootstrap/Nav'
+
+
+const categories = [{
+  categoryId: "libros",
+  name: "LIBROS"
+}, {
+
+  categoryId: "catalogos",
+  name: "CATALOGOS"
+}
+]
 
 export const NavbarComponent = () => {
   console.log('Into Navbar');
 
   return (
-    
-      <div>
-        <title> El Rincón de la lectura </title>
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
-          <img alt="" src="/images/libros.jpg" width="100" height="100" />
-          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div className="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul className="navbar-nav">
-              <li className="nav-item active">
-                <p className="nav-link" >Inicio <span className="sr-only"></span></p>
-              </li>
-              <li className="nav-item">
-                <p className="nav-link" >Características</p>
-              </li>
-              <li className="nav-item">
-                <p className="nav-link" >Precios</p>
-              </li>
-              <li className="nav-item dropdown">
-                <p className="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Listado
-                </p>
-                <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <p className="dropdown-item">Historia</p>
-                  <p className="dropdown-item">Literatura</p>
-                  <p className="dropdown-item">Mundo</p>
-                </div>
-              </li>
-              <CartWidget />
-            </ul>
-          </div>
-        </nav>
-      </div>
-   
+
+    <Nav justify variant="tabs" defaultActiveKey="/home">
+      <Link to={"/"}><img alt="" src="/images/libros.jpg" width="100" height="100" /></Link>
+      <Nav.Item>
+        <Nav.Link href="/">Inicio</Nav.Link>
+      </Nav.Item>
+      <Nav.Item>
+        <Nav.Link eventKey="link-1">Quienes somos</Nav.Link>
+      </Nav.Item>
+      <Nav.Item>
+        <Nav.Link eventKey="link-2">Autores</Nav.Link>
+      </Nav.Item>
+      <Nav.Item></Nav.Item>
+      {
+        categories.map(category =>
+          <Nav.Item>
+          <Link to={`/category/${category.categoryId}`}>
+            <p>{category.name}</p>
+          </Link>
+          </Nav.Item>)}
+      <Nav.Item>
+        <Nav.Link eventKey="disabled" disabled>
+          Carrito
+        </Nav.Link>
+        <Link to={"/Item"}>
+          <CartWidget />
+        </Link>
+      </Nav.Item>
+    </Nav>
   )
 }
