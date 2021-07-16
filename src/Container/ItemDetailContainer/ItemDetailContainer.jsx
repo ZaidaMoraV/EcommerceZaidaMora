@@ -7,10 +7,11 @@ export const ItemDetailContainer = () => {
 
     useEffect(() => {
         async function getDataProduct() {
-            const product  = await fetch("https://api.mercadolibre.com/items/MLC523398615");
+            const product  = await fetch("https://api.mercadolibre.com/sites/MLC/search?q=Libros%20Revistas%20y%20Comics");
             const apiResult = await product.json();
-            console.log ("apiResult " + apiResult.id);
+            console.log ("aquí");
             setDetail(apiResult);
+            
         }
         getDataProduct();
     }, [])
@@ -20,6 +21,7 @@ export const ItemDetailContainer = () => {
                 {
                     <ItemDetail key={detail.id} name={detail.title} price={detail.price} img={detail.thumbnail} />
                 }
+                
             </section>
         </>
     )

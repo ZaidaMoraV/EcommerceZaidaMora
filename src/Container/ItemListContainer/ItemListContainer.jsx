@@ -11,7 +11,7 @@ export const ItemListContainer = ({ greenting }) => {
         console.log (id);
 
         async function getDataFromBooks() {
-            const result = await fetch("https://api.mercadolibre.com/sites/MLC/search?q=Libros,%20Revistas%20y%20Comics"+id);
+            const result = await fetch("https://api.mercadolibre.com/sites/MLC/search?q=Libros%20Revistas%20y%20Comics");
             console.log(result);
             const data = await result.json();
             setListProducts(data.results);
@@ -22,24 +22,21 @@ export const ItemListContainer = ({ greenting }) => {
 
  
     return (
-
         <>
             <section>
             <h2>{greenting}</h2>
                 {
                     listProducts.map(element => {
                         return (
-                            <Item key={element.id} name={element.title} price={element.price} img={element.thumbnail} />
+                            <Item id={element.id} name={element.title} price={element.price} img={element.thumbnail} />
                         )
                     })
                 }
             </section>
-            
         </>
     )
 
 }
-
 
 export default ItemListContainer
 

@@ -8,9 +8,7 @@ import { ItemDetailContainer } from './Container/ItemDetailContainer/ItemDetailC
 import { ItemListContainer } from './Container/ItemListContainer/ItemListContainer';
 import { ItemCount } from './Container/ItemListContainer/ItemCount';
 
-
-
-function App() {
+     function App() {
   return (
     <>
       <BrowserRouter>
@@ -28,7 +26,7 @@ function App() {
             <ItemListContainer />
           </Route>
 
-          <Route exact path="/item/:id">
+          <Route exact path="/detalle"> 
             <ItemDetailContainer />
           </Route>
 
@@ -40,6 +38,7 @@ function App() {
 
   )
 }
+
 
 
 export default App;

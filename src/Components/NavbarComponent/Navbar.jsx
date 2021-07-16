@@ -18,7 +18,7 @@ export const NavbarComponent = () => {
 
   return (
 
-    <Nav justify variant="tabs" defaultActiveKey="/home">
+    <Nav justify variant="tabs" defaultActiveKey="/">
       <Link to={"/"}><img alt="" src="/images/libros.jpg" width="100" height="100" /></Link>
       <Nav.Item>
         <Nav.Link href="/">Inicio</Nav.Link>
@@ -41,9 +41,7 @@ export const NavbarComponent = () => {
         <Nav.Link eventKey="disabled" disabled>
           Carrito
         </Nav.Link>
-        <Link to={"/Item"}>
           <CartWidget />
-        </Link>
       </Nav.Item>
     </Nav>
   )

@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Button } from "react-bootstrap";
 import { Item } from "./Item";
+import { Link } from "react-router-dom";
 
-
-export const ItemCount = () => {
+export const ItemCount = ({ key, name, price, img, funcOnAdd }) => {
     console.log('---> Into ItemCount');
     const [contador, setContador] = useState(0);
 
@@ -18,18 +18,34 @@ export const ItemCount = () => {
             setContador(contador - 1);
         }
     }
-    
-    return (
+    function addItem(){
+        console.log('Add to cart');
+        funcOnAdd();
+    }
 
+    return (
         <>
-            <section>
+            <div>
                 <Item />
-                <Button variant="primary" size="lg" onClick={() => { validarSuma() }}>Agregar</Button>
-                {contador}
+                <Button variant="primary" size="lg" onClick={() => { validarSuma() }} >Agregar</Button>
+                <h3>{contador}</h3>
                 <Button variant="secondary" size="lg" onClick={() => { validarResta() }}>Eliminar</Button>
-            </section>
+            </div>
+
+            <div>
+                <Button variant="secondary" size="lg" onClick={() => addItem()}>
+                    <h3>Agregar al carrito</h3>
+                </Button>
+            </div>
+            <div>
+                <Link to={"/cart"}>
+                    <Button variant="secondary" size="lg">
+                        <h3>Terminar compra</h3>
+                    </Button>
+                </Link>
+            </div>
         </>
     )
 }
 
-
+export default ItemCount
