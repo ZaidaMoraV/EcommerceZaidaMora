@@ -1,3 +1,4 @@
+import React from 'react'
 import { CartWidget } from "./CartWidget";
 import { Link } from "react-router-dom";
 import Nav from 'react-bootstrap/Nav'
@@ -38,11 +39,9 @@ export const NavbarComponent = () => {
           </Link>
           </Nav.Item>)}
       <Nav.Item>
-        <Nav.Link eventKey="disabled" disabled>
-          Carrito
-        </Nav.Link>
-          <CartWidget />
-      </Nav.Item>
+        <Nav.Link eventKey="disabled" disabled> </Nav.Link>
+         <Link to= {"/cart"}><CartWidget /> </Link>
+         </Nav.Item>
     </Nav>
   )
 }

@@ -1,3 +1,4 @@
+import React from 'react';
 import Card from 'react-bootstrap/Card';
 import { Link } from 'react-router-dom';
 
@@ -16,3 +17,5 @@ export const Item = ({id, name, price, img }) => {
   )
 }
 
+
+export default Item

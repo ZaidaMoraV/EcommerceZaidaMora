@@ -1,19 +1,22 @@
-// import logo from './logo.svg';
+
 import './App.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.css';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import { HeaderComponent } from './Components/HeaderComponent';
+import { ItemListContainer } from './Container/ItemListContainer/ItemListContainer';
 import { NavbarComponent } from './Components/NavbarComponent/Navbar';
 import { ItemDetailContainer } from './Container/ItemDetailContainer/ItemDetailContainer';
-import { ItemListContainer } from './Container/ItemListContainer/ItemListContainer';
-import { ItemCount } from './Container/ItemListContainer/ItemCount';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { HeaderComponent } from './Components/HeaderComponent';
 
-     function App() {
+
+
+// import { ShopContext } from './context/ShopContext';
+
+function App() {
   return (
-    <>
-      <BrowserRouter>
+
+    <BrowserRouter>
         <HeaderComponent />
-        
+
         <NavbarComponent />
 
         <Switch>
@@ -26,19 +29,13 @@ import { ItemCount } from './Container/ItemListContainer/ItemCount';
             <ItemListContainer />
           </Route>
 
-          <Route exact path="/detalle"> 
+          <Route exact path="/item/:id">
             <ItemDetailContainer />
           </Route>
 
-          <ItemCount />
-
         </Switch>
-      </BrowserRouter>
-    </>
-
-  )
+    </BrowserRouter>
+  );
 }
-
-
 
 export default App;

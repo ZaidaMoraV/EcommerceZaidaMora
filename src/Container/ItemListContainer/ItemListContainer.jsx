@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
+import ItemList from "./ItemList";
 import { useParams } from "react-router-dom";
-import { Item } from "./Item";
 
-export const ItemListContainer = ({ greenting }) => {
+
+export const ItemListContainer = ({ greenting, products }) => {
     const [listProducts, setListProducts] = useState([]);
 
     const { id } = useParams()
@@ -18,22 +19,14 @@ export const ItemListContainer = ({ greenting }) => {
             console.log("aqui");
         }
         getDataFromBooks();
-        }, [id])
+        }, [id, products])
 
  
     return (
-        <>
-            <section>
-            <h2>{greenting}</h2>
-                {
-                    listProducts.map(element => {
-                        return (
-                            <Item id={element.id} name={element.title} price={element.price} img={element.thumbnail} />
-                        )
-                    })
-                }
-            </section>
-        </>
+        <section>
+        <h2>{greenting}</h2>
+            { <ItemList products ={listProducts}/> }
+        </section>
     )
 
 }

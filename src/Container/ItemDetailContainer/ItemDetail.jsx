@@ -3,14 +3,27 @@ import { Link } from 'react-router-dom';
 import { ItemCount } from '../ItemListContainer/ItemCount';
 import { useState } from "react";
 
-export const ItemDetail = ({ key, name, price, img }) => {
+export const ItemDetail = ({ key, name, price, img, id, stock, item }) => {
 
-  const [carrito, setCarrito] = useState([]);
+  const [contador, setContador] = useState(0);
 
-  function onAdd() {
-    console.log('function onAdd');
-    setCarrito([...carrito, { 'key': key, 'name': name, 'price': price, 'img': img }]);
+  function add() {
+    if ( contador < stock){
+      setContador(contador+1)
+    }
   }
+
+  // ValidarContador
+  function Suma() {
+    if (contador < 5) {
+        setContador(contador + 1);
+    }
+}
+function Resta() {
+    if (contador > 1) {
+        setContador(contador - 1);
+    }
+}
 
   return (
        <Card style={{ width: '18rem' }}>
@@ -22,8 +35,9 @@ export const ItemDetail = ({ key, name, price, img }) => {
         </Card.Text>
         <Link to={"/item"}>ver mas</Link>
       </Card.Body>
-      <ItemCount key={key} name={name} price={price} img={img} funcOnAdd={onAdd}/>
+      <ItemCount Suma={Suma} Resta ={Resta} item={item} contador={contador} id={id} stock={stock} add={add}/>
     </Card>
     
   )
 }
+ export default ItemDetail
