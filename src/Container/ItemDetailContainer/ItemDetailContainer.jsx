@@ -1,28 +1,35 @@
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { ItemDetail } from './ItemDetail';
 
 export const ItemDetailContainer = () => {
     console.log('Into detail');
-    const [detail, setDetail] = useState([]);
+    const [detail, setDetail] = useState('');
+    const { id } = useParams();
 
     useEffect(() => {
-        async function getDataProduct() {
-            const product  = await fetch("https://api.mercadolibre.com/sites/MLC/search?q=Libros%20Revistas%20y%20Comics");
-            const apiResult = await product.json();
-            console.log ("aquí");
-            setDetail(apiResult);
-            
+        console.log("Item detail container id: " + id);
+        if(id){
+            async function getDataProduct() {
+                const product = await fetch("https://api.mercadolibre.com/items/" + id);
+                const apiResult = await product.json();
+                setDetail(apiResult);
+            }
+            getDataProduct();
         }
-        getDataProduct();
-    }, [])
+    }, [id]);
+
     return (
         <>
-            <section>
-                {
-                    <ItemDetail key={detail.id} name={detail.title} price={detail.price} img={detail.thumbnail} />
-                }
-                
-            </section>
+        {
+            detail === ''
+            ? <h1>Cargando</h1>
+            : <div>
+            {
+                <ItemDetail key={detail.id} item={detail} />
+            }
+            </div>
+        } 
         </>
     )
 }

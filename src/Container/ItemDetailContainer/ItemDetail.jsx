@@ -1,43 +1,46 @@
-import Card from 'react-bootstrap/Card';
+import { Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { ItemCount } from '../ItemListContainer/ItemCount';
 import { useState } from "react";
+import { ItemCount } from '../../Components/ItemCount';
 
-export const ItemDetail = ({ key, name, price, img, id, stock, item }) => {
+export const ItemDetail = ( props ) => {
+  const initial = 1;
+  const [cantSel, setCantSel] = useState(initial);
+  const item = {
+    id: props.id,
+    title: props.item.title,
+    category: props.item.category,
+    description: props.item.description,
+    imageUrl: props.item.thumbnail,
+    stock: props.item.available_quantity,
+    price: props.item.price
+  };
 
-  const [contador, setContador] = useState(0);
-
-  function add() {
-    if ( contador < stock){
-      setContador(contador+1)
+  function add(p) {
+    if (cantSel < item.stock) {
+      setCantSel(cantSel + 1);
+    } else {
+      setCantSel(item.stock);
     }
   }
 
-  // ValidarContador
-  function Suma() {
-    if (contador < 5) {
-        setContador(contador + 1);
+  function subtract(p) {
+    if (cantSel > initial) {
+      setCantSel(cantSel - 1);
+    } else {
+      setCantSel(initial);
     }
-}
-function Resta() {
-    if (contador > 1) {
-        setContador(contador - 1);
-    }
-}
+  }
 
   return (
-       <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src={img} />
+    <Card style={{ width: '40rem' }}>
+      <Card.Header>{item.title}</Card.Header>
+      <Card.Img src={item.imageUrl} fluid />
       <Card.Body>
-        <Card.Title>{name}</Card.Title>
-        <Card.Text>
-          {price} Ver producto
-        </Card.Text>
-        <Link to={"/item"}>ver mas</Link>
+        <Card.Text>Precio: {item.price}</Card.Text>
+        <ItemCount min="0" max={item.stock} value={cantSel} funResta={add} funSuma={subtract} />
+        <Link to={"/item"}>Agregar al carrito</Link>
       </Card.Body>
-      <ItemCount Suma={Suma} Resta ={Resta} item={item} contador={contador} id={id} stock={stock} add={add}/>
     </Card>
-    
   )
 }
- export default ItemDetail

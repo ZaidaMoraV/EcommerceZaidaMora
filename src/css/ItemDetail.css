@@ -1,0 +1,6 @@
+.itemDetail {
+
+    display: flex;
+	position: center;
+    justify-content: center;
+}

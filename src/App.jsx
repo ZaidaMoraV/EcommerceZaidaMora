@@ -1,40 +1,39 @@
-
 import './App.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.css';
-import { ItemListContainer } from './Container/ItemListContainer/ItemListContainer';
-import { NavbarComponent } from './Components/NavbarComponent/Navbar';
-import { ItemDetailContainer } from './Container/ItemDetailContainer/ItemDetailContainer';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import { HeaderComponent } from './Components/HeaderComponent';
-
-
-
-// import { ShopContext } from './context/ShopContext';
+// import { CartProvider } from './Context/CartContext';
+import { NavbarComponent } from './Components/Navbar';
+import { ItemListContainer } from './Container/ItemListContainer/ItemListContainer';
+import { ItemDetailContainer } from './Container/ItemDetailContainer/ItemDetailContainer';
 
 function App() {
+
   return (
 
-    <BrowserRouter>
-        <HeaderComponent />
+    <div className="App">
+    {/* <CartProvider> */}
+        <BrowserRouter>
+          <NavbarComponent />
 
-        <NavbarComponent />
+          <Switch>
+            <Route exact path="/">
+              <ItemListContainer greenting={'¡¡Gracias por Visitarnos!!'} />
+            </Route>
+            <Route exact path="/cart">
+            </Route>
 
-        <Switch>
+            <Route exact path="/category/:id">
+              <ItemListContainer />
+            </Route>
 
-          <Route exact path="/">
-            <ItemListContainer greenting={'¡¡Gracias por Visitarnos!!'} />
-          </Route>
+            <Route exact path="/item/:id">
+              <ItemDetailContainer />
+            </Route>
 
-          <Route exact path="/category/:id">
-            <ItemListContainer />
-          </Route>
-
-          <Route exact path="/item/:id">
-            <ItemDetailContainer />
-          </Route>
-
-        </Switch>
-    </BrowserRouter>
+          </Switch>
+        </BrowserRouter>
+      {/* </CartProvider> */}
+    </div>
   );
 }
 

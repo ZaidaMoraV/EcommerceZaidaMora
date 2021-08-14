@@ -13,10 +13,6 @@ const app = firebase.initializeApp({
     measurementId: "G-G53P4JENL4"
 });
 
-export const getFirebase = () => {
-    return app;
-}
-
 export const getFirestore = () => {
     return firebase.firestore(app);
 }

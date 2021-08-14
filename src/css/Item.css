@@ -1,0 +1,11 @@
+.item{
+    display: inline-block;
+    flex-direction: column;
+    position: relative;
+    height: auto;
+    max-width: 30rem;
+    margin: 1rem;
+    padding: auto;
+    border-color: blue;
+  
+}

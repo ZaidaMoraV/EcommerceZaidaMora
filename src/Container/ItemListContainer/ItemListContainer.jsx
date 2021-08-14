@@ -1,35 +1,42 @@
 import { useEffect, useState } from "react";
-import ItemList from "./ItemList";
 import { useParams } from "react-router-dom";
+import { ItemList } from "./ItemList";
 
-
-export const ItemListContainer = ({ greenting, products }) => {
+export const ItemListContainer = ({ greenting }) => {
     const [listProducts, setListProducts] = useState([]);
-
-    const { id } = useParams()
+    const { id } = useParams();
 
     useEffect(() => {
-        console.log (id);
+        console.log("id categoria : " + id);
 
-        async function getDataFromBooks() {
-            const result = await fetch("https://api.mercadolibre.com/sites/MLC/search?q=Libros%20Revistas%20y%20Comics");
-            console.log(result);
-            const data = await result.json();
-            setListProducts(data.results);
-            console.log("aqui");
+        if (id) {
+            console.log("Llego un id categoria");
+            async function getDataCategorias() {
+                const result = await fetch("https://api.mercadolibre.com/sites/MLC/search?category="+id);
+                console.log(result);
+                const data = await result.json();
+                setListProducts(data.results);
+                console.log("listado");
+            }
+            getDataCategorias();
+
+        } else {
+            console.log("Todas las categorias");
+            async function getDataFromBooks() {
+                const result = await fetch("https://api.mercadolibre.com/sites/MLC/search?q=Libros%20Revistas%20y%20Comics");
+                console.log(result);
+                const data = await result.json();
+                setListProducts(data.results);
+            }
+            getDataFromBooks();
         }
-        getDataFromBooks();
-        }, [id, products])
+    }, [id]);
 
- 
     return (
         <section>
-        <h2>{greenting}</h2>
-            { <ItemList products ={listProducts}/> }
+            <h4>{greenting}</h4>
+            <ItemList products={listProducts} />
         </section>
     )
 
 }
-
-export default ItemListContainer
-
