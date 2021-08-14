@@ -1,11 +1,25 @@
-.item{
+.item {
     display: inline-block;
     flex-direction: column;
     position: relative;
     height: auto;
-    max-width: 30rem;
+    max-width: 18rem;
     margin: 1rem;
     padding: auto;
     border-color: blue;
-  
+    border-radius: 2%;
+}
+.card {
+    height: 25rem;
+    width: 15rem;
+    align-items: center;
+    background-color: transparent;
+}
+.img {
+    height: 12rem;
+    width: 12rem;
+    margin-top: 1rem;
+}
+.footer {
+    background-color: transparent;
 }

@@ -1,9 +1,10 @@
-import { Card } from 'react-bootstrap';
+import { Button, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useState } from "react";
 import { ItemCount } from '../../Components/ItemCount';
+import '../../css/ItemDetail.css';
 
-export const ItemDetail = ( props ) => {
+export const ItemDetail = (props) => {
   const initial = 1;
   const [cantSel, setCantSel] = useState(initial);
   const item = {
@@ -33,14 +34,18 @@ export const ItemDetail = ( props ) => {
   }
 
   return (
-    <Card style={{ width: '40rem' }}>
-      <Card.Header>{item.title}</Card.Header>
-      <Card.Img src={item.imageUrl} fluid />
-      <Card.Body>
-        <Card.Text>Precio: {item.price}</Card.Text>
-        <ItemCount min="0" max={item.stock} value={cantSel} funResta={add} funSuma={subtract} />
-        <Link to={"/item"}>Agregar al carrito</Link>
-      </Card.Body>
-    </Card>
+    <div className="detail">
+      <Card className="cart">
+        <Card.Header>{item.title}</Card.Header>
+        <Card.Img className="img" src={item.imageUrl} />
+        <Card.Body>
+          <Card.Text>Precio: {item.price}</Card.Text>
+          <ItemCount min="0" max={item.stock} value={cantSel} funResta={add} funSuma={subtract} />
+          <Link to={"/item"}>
+            <Button variant="secondary" size="md">Agregar al carrito</Button>
+          </Link>
+        </Card.Body>
+      </Card>
+    </div>
   )
 }

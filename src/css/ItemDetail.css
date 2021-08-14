@@ -1,6 +1,18 @@
-.itemDetail {
-
+.detail {
+    text-align: center;
+    width: auto;
+    height: auto;
     display: flex;
-	position: center;
     justify-content: center;
+}
+.cart {
+    width: 60rem;
+    height: auto;
+    text-align: center;
+    border: 0rem;
+}
+.img {
+    height: 20rem;
+    width: 20rem;
+    margin-top: 1rem;
 }
