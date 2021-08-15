@@ -9,17 +9,17 @@
     border-color: blue;
     border-radius: 2%;
 }
-.card {
+.cardItem {
     height: 25rem;
     width: 15rem;
     align-items: center;
     background-color: transparent;
 }
-.img {
+.imageItem {
     height: 12rem;
     width: 12rem;
     margin-top: 1rem;
 }
-.footer {
+.footerItem {
     background-color: transparent;
 }

@@ -1,7 +1,7 @@
 import './App.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.css';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-// import { CartProvider } from './Context/CartContext';
+import { CartProvider } from './Context/CartContext';
 import { NavbarComponent } from './Components/Navbar';
 import { ItemListContainer } from './Container/ItemListContainer/ItemListContainer';
 import { ItemDetailContainer } from './Container/ItemDetailContainer/ItemDetailContainer';
@@ -11,7 +11,7 @@ function App() {
   return (
 
     <div className="App">
-    {/* <CartProvider> */}
+      <CartProvider>
         <BrowserRouter>
           <NavbarComponent />
 
@@ -32,7 +32,7 @@ function App() {
 
           </Switch>
         </BrowserRouter>
-      {/* </CartProvider> */}
+      </CartProvider>
     </div>
   );
 }

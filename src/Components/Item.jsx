@@ -7,15 +7,15 @@ import '../css/Item.css';
 export const Item = ({ id, name, price, img }) => {
   return (
     <div className="item">
-      <Card className="card">
-        <Card.Img className="img" src={img} />
+      <Card className="cardItem">
+        <Card.Img className="imageItem" src={img} />
         <Card.Body>
           <Card.Title>{name}</Card.Title>
           <Card.Text>
             {price} Ver producto
           </Card.Text>
         </Card.Body>
-        <Card.Footer>
+        <Card.Footer className="footerItem">
           <Link to={`/item/${id}`}>
             <Button variant="secondary" size="md">Ver más</Button>
           </Link>
