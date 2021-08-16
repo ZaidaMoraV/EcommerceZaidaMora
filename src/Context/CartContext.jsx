@@ -1,12 +1,25 @@
+import { useEffect } from "react";
 import { createContext, useState } from "react";
 
 const CartContext = createContext();
  
 function CartProvider ({ children }){
 
-    const [ cart, setCart] = useState([]);
-    const [ quantity, setQuantity ] = useState(0);
-    const [ total, setTotal ] = useState();
+    const [cart, setCart] = useState([]);
+    const [quantity, setQuantity ] = useState(0);
+    const [total, setTotal ] = useState(0);
+
+    useEffect(() => {
+        var total = 0
+        const totalPrice = cart.map( p => ({price : p.price * p.amount}))
+        totalPrice.map( p => total = total + p )
+
+        const sumaPrice = totalPrice.reduce((prev, next) => prev + next.price, 0);
+        setTotal(sumaPrice)
+
+        const totalProducts = cart.reduce((prev, next) => prev + next.amount, 0);
+        setQuantity(totalProducts)
+    }, [cart])
 
     const addItem = (id, item, cant) => {
         const exist = isInCart(id);
@@ -15,21 +28,29 @@ function CartProvider ({ children }){
             const newQuantity = oldItem.amount + cant;
             const newItem = {
                 id: oldItem.id,
-                title: oldItem.item.title,
-                category: oldItem.item.category,
-                description: oldItem.item.description,
-                imageUrl: oldItem.item.thumbnail,
-                stock: oldItem.item.available_quantity,
-                price: oldItem.item.price,
+                title: oldItem.title,
+                category: oldItem.category,
+                description: oldItem.description,
+                imageUrl: oldItem.imageUrl,
+                stock: oldItem.stock,
+                price: oldItem.price,
                 amount: newQuantity
             }
             const cartUpdate = cart.filter(item => item.id =! id);
             const cartNew = [...cartUpdate, newItem];
             setCart(cartNew);
         } else {
-            setCart([...cart, { item, quantity }]);
-            getTotalPrice();
-            getTotalQuantity();
+            const newItem = {
+                id: item.id,
+                title: item.title,
+                category: item.category,
+                description: item.description,
+                imageUrl: item.imageUrl,
+                stock: item.available_quantity,
+                price: item.price,
+                amount: cant
+            }
+            setCart([...cart, newItem]);
         }
     }
 
@@ -39,6 +60,7 @@ function CartProvider ({ children }){
     }
 
     const clearCart = () => {
+        console.log("clearCart ...");
         setCart([]);
         setQuantity(0);
         setTotal(0);
@@ -51,19 +73,6 @@ function CartProvider ({ children }){
         } else {
             return true;
         }
-    }
-    const getTotalPrice = () => {
-        let total = cart.reduce((acc, cur) => {
-            return (cur.item.price * cur.quantity) + acc
-        }, 0);
-        setTotal(total);
-    }
-
-    const getTotalQuantity = () => {
-        let total = cart.reduce((acc, cur) => {
-            return cur.quantity + acc
-        }, 0);
-        setQuantity(total);
     }
 
     return (

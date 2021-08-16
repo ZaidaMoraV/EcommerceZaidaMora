@@ -1,4 +1,4 @@
-import { Button, Card } from 'react-bootstrap';
+import { Button, Card, Col, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useContext, useState } from "react";
 import { ItemCount } from '../../Components/ItemCount';
@@ -11,10 +11,10 @@ export const ItemDetail = (props) => {
   const context = useContext(CartContext);
 
   const item = {
-    id: props.id,
+    id: props.item.id,
     title: props.item.title,
-    category: props.item.category,
-    description: props.item.description,
+    category: props.item.category_id,
+    description: props.item.title,
     imageUrl: props.item.thumbnail,
     stock: props.item.available_quantity,
     price: props.item.price
@@ -36,7 +36,7 @@ export const ItemDetail = (props) => {
     }
   }
 
-  function onAddToCart(id, item, cantSel){
+  function onAddToCart(id, item, cantSel) {
     context.addItem(id, item, cantSel);
   }
 
@@ -46,12 +46,20 @@ export const ItemDetail = (props) => {
         <Card.Header>{item.title}</Card.Header>
         <Card.Img className="imageDetail" src={item.imageUrl} />
         <Card.Body>
+          <Card.Text>Stock: {item.stock}</Card.Text>
           <Card.Text>Precio: {item.price}</Card.Text>
-          <ItemCount min="0" max={item.stock} value={cantSel} funResta={add} funSuma={subtract} />
-          <Link to={"/item"}>
-            <Button variant="secondary" size="md" onClick={(p) => { onAddToCart(item.id, item, cantSel) }}>
-              Agregar al carrito</Button>
-          </Link>
+          <ItemCount min="0" max={item.stock} value={cantSel} funResta={subtract} funSuma={add} />
+          <br></br>
+          <Row>
+            <Col>
+              <Button variant="secondary" size="lg" onClick={(p) => { onAddToCart(item.id, item, cantSel) }}>Agregar al carrito</Button>
+            </Col>
+            <Col>
+              <Link to={"/cart"}>
+                <Button variant="secondary" size="lg" >Terminar la compra</Button>
+              </Link>
+            </Col>
+          </Row>
         </Card.Body>
       </Card>
     </div>

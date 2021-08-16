@@ -5,6 +5,7 @@ import { CartProvider } from './Context/CartContext';
 import { NavbarComponent } from './Components/Navbar';
 import { ItemListContainer } from './Container/ItemListContainer/ItemListContainer';
 import { ItemDetailContainer } from './Container/ItemDetailContainer/ItemDetailContainer';
+import { Cart } from './Container/Cart';
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
               <ItemListContainer greenting={'¡¡Gracias por Visitarnos!!'} />
             </Route>
             <Route exact path="/cart">
+              <Cart />
             </Route>
 
             <Route exact path="/category/:id">
