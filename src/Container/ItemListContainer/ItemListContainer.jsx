@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { getFirestore } from "../../firebase";
 import { ItemList } from "./ItemList";
 
 export const ItemListContainer = ({ greenting }) => {
@@ -7,26 +8,29 @@ export const ItemListContainer = ({ greenting }) => {
     const { id } = useParams();
 
     useEffect(() => {
-        console.log("id categoria : " + id);
-
         if (id) {
-            console.log("Llego un id categoria");
             async function getDataCategorias() {
-                const result = await fetch("https://api.mercadolibre.com/sites/MLC/search?category="+id);
-                console.log(result);
-                const data = await result.json();
-                setListProducts(data.results);
-                console.log("listado");
+                const db = getFirestore();
+                const collection = db.collection('products');
+                const categories = await collection.where("category_id","==",id).get();
+                console.log(categories.docs.map(element => element.data()));
+                const aux = categories.docs.map( p => {
+                    return { id: p.id, ...p.data()}
+                });
+                setListProducts(aux);
             }
             getDataCategorias();
 
         } else {
-            console.log("Todas las categorias");
             async function getDataFromBooks() {
-                const result = await fetch("https://api.mercadolibre.com/sites/MLC/search?q=Libros%20Revistas%20y%20Comics");
-                console.log(result);
-                const data = await result.json();
-                setListProducts(data.results);
+                const db = getFirestore();
+                const collection = db.collection('products');
+                const categories = await collection.get();
+                console.log(categories.docs.map(element => element.data()));
+                const aux = categories.docs.map( p => {
+                    return { id: p.id, ...p.data() }
+                });
+                setListProducts(aux);
             }
             getDataFromBooks();
         }

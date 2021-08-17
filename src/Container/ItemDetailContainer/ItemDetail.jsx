@@ -9,6 +9,7 @@ export const ItemDetail = (props) => {
   const initial = 1;
   const [cantSel, setCantSel] = useState(initial);
   const context = useContext(CartContext);
+  console.log("id detail : " + props.item.id);
 
   const item = {
     id: props.item.id,
@@ -16,7 +17,7 @@ export const ItemDetail = (props) => {
     category: props.item.category_id,
     description: props.item.title,
     imageUrl: props.item.thumbnail,
-    stock: props.item.available_quantity,
+    stock: props.item.stock,
     price: props.item.price
   };
 
@@ -37,6 +38,7 @@ export const ItemDetail = (props) => {
   }
 
   function onAddToCart(id, item, cantSel) {
+    console.log(id, item, cantSel);
     context.addItem(id, item, cantSel);
   }
 

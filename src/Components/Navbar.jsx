@@ -5,11 +5,11 @@ import { CartWidget } from "./CartWidget";
 
 const categories = [{
   key: 1,
-  categoryId: "MLC1196",
+  categoryId: "szYDfil4n6L2ZhEo5ggl",
   name: "Libros"
 }, {
   key: 2,
-  categoryId: "MLC3043",
+  categoryId: "OIDTExaZqdBgKEVbULYe",
   name: "Comics"
 }];
 
